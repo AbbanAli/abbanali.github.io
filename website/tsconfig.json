@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true
+    // ...rest of your settings
+  }
+}
