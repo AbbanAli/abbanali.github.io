@@ -1,3 +1,4 @@
+<<<<<<< HEAD:website/index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,3 +47,53 @@
   <script src="dist/main.js" defer></script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome!</title>
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="icon" type="image/x-icon" href="assets/silvias15.ico">
+</head>
+<body>
+  <canvas id="starfield"></canvas>
+
+  <svg width="0" height="0">
+    <filter id="liquidRipple">
+      <feTurbulence type="turbulence" baseFrequency="0.01" numOctaves="3" result="turbulence"/>
+      <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="30" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+
+  <main>
+    <section class="card-container">
+      <div class="contact-card" tabindex="0">
+        <h1 id="welcome-message">
+        Welcome!
+        </h1>
+
+        <p>I’m Abban Ali — or just Abban if you’re chill. Been coding since I was like 12, gaming since I could press wasd, and obsessed with cars ever since I learned what a clutch pedal does.</p>
+        <p>Feel free to reach out through any of the platforms below!</p>
+        <div class="button-group">
+          <a href="https://github.com/AbbanAli" target="_blank" class="contact-btn github">
+            <img src="assets/github.png" alt="GitHub" class="icon float" /> GitHub
+          </a>
+          <a href="https://youtube.com/@eeasaa" target="_blank" class="contact-btn youtube">
+            <img src="assets/youtube.png" alt="YouTube" class="icon youtube float" /> YouTube
+          </a>
+          <a href="https://discord.com/users/1130471313073512501" target="_blank" class="contact-btn discord">
+            <img src="assets/discord.png" alt="Discord" class="icon discord float" /> Discord
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <button id="mute-toggle" class="mute-btn" aria-label="Toggle background music">🔊</button>
+
+  <script src="dist/main.js" defer></script>
+</body>
+</html>
+>>>>>>> fcfd7b7 (Deploy site to root for GitHub Pages):index.html

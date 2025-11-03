@@ -1,9 +1,10 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const canvas = document.getElementById('starfield');
 const ctx = canvas.getContext('2d');
 const card = document.querySelector('.contact-card');
 const buttons = document.querySelectorAll('.contact-btn');
-const muteBtn = document.getElementById('mute-toggle');
+// const clickSound = new Audio('sounds/click-sound.mp3');
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
 canvas.width = window.innerWidth;
@@ -11,19 +12,15 @@ canvas.height = window.innerHeight;
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    stars = generateStars(250);
 });
-function generateStars(count) {
-    return Array.from({ length: count }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        size: Math.random() * 2 + 1,
-        drift: Math.random() * 0.2 + 0.05,
-    }));
-}
-let stars = generateStars(250);
+const stars = Array.from({ length: 10 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    vx: (Math.random() - 0.5) * 0.3,
+    vy: (Math.random() - 0.5) * 0.3,
+    size: Math.random() * 2 + 1,
+    drift: Math.random() * 0.2 + 0.05,
+}));
 document.addEventListener('mousemove', e => {
     mouseX = e.clientX;
     mouseY = e.clientY;
@@ -52,6 +49,7 @@ function updateStars() {
         star.vy *= 0.96;
         star.x += star.vx + star.drift;
         star.y += star.vy + star.drift;
+        // Wrap around edges
         if (star.x < 0)
             star.x = canvas.width;
         if (star.x > canvas.width)
@@ -78,41 +76,39 @@ function animate() {
     requestAnimationFrame(animate);
 }
 animate();
-const bgMusic = new Audio();
-bgMusic.src = 'sounds/HOME-Resonance.mp3';
+// /* 🔊 Sound triggers */
+// buttons.forEach(btn => {
+//   ['click', 'mouseenter'].forEach(event => {
+//     btn.addEventListener(event, () => {
+//       clickSound.pause();
+//       clickSound.currentTime = 0;
+//       clickSound.play().catch(err => {
+//         console.warn('Sound failed:', err);
+//       });
+//     });
+//   });
+// });
+const bgMusic = new Audio('sounds/HOME-Resonance.mp3');
 bgMusic.loop = true;
-bgMusic.volume = 0.03;
-const audioContext = new (window.AudioContext || window.AudioContext)();
-const source = audioContext.createMediaElementSource(bgMusic);
-// Create a low-shelf filter to boost bass
-const bassBoost = audioContext.createBiquadFilter();
-bassBoost.type = 'lowshelf';
-bassBoost.frequency.value = 200; // Boost frequencies below 200Hz
-bassBoost.gain.value = 3; // Boost amount in dB (try 3–6 for subtle lift)
-window.addEventListener("DOMContentLoaded", () => {
-    const welcomeEl = document.getElementById("welcome-message");
-    const hasVisited = localStorage.getItem("hasVisited");
-    if (welcomeEl) {
-        if (hasVisited) {
-            welcomeEl.textContent = "Welcome back, traveler. The stars remember you.";
-        }
-        else {
-            localStorage.setItem("hasVisited", "true");
-        }
-    }
+bgMusic.volume = 0.2;
+// ✅ Only one click listener to trigger playback
+document.addEventListener('click', () => {
+    bgMusic.play().catch(err => console.warn('Autoplay blocked:', err));
+}, { once: true });
+// ✅ Optional: log when ready
+bgMusic.addEventListener('canplaythrough', () => {
+    console.log('Background music ready');
 });
-// Connect the nodes
-source.connect(bassBoost);
-bassBoost.connect(audioContext.destination);
 document.addEventListener('click', () => {
     bgMusic.play().catch(err => console.warn('Autoplay blocked:', err));
 }, { once: true });
 bgMusic.addEventListener('canplaythrough', () => {
     console.log('Background music ready');
 });
-bgMusic.addEventListener('error', () => {
-    console.error('Audio load error:', bgMusic.error);
-});
+// clickSound.addEventListener('canplaythrough', () => {
+//   console.log('Click sound ready');
+// });
+const muteBtn = document.getElementById('mute-toggle');
 muteBtn.addEventListener('click', () => {
     bgMusic.muted = !bgMusic.muted;
     muteBtn.textContent = bgMusic.muted ? '🔇' : '🔊';
