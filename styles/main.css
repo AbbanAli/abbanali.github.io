@@ -105,10 +105,13 @@ body {
   background: linear-gradient(to right, #ff416c, #ff4b2b);
 }
 .contact-btn.discord {
-background: linear-gradient(to right, #5865F2, #3B45C5);
+background: linear-gradient(to right, #616eff, #3B45C5);
 
 }
+.contact-btn.reddit {
+background: linear-gradient(to right, #ff7b00, #cc3000);
 
+}
 
 
 /* 💫 Hover Shimmer */
@@ -148,6 +151,9 @@ background: linear-gradient(to right, #5865F2, #3B45C5);
     filter: drop-shadow(0 0 2px rgba(0,0,0,0.4));
 }
 .icon.discord {
+  filter: drop-shadow(0 0 2px rgba(0,0,0,0.4));
+}
+.icon.reddit {
   filter: drop-shadow(0 0 2px rgba(0,0,0,0.4));
 }
 .mute-btn {
