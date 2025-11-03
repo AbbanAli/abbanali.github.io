@@ -36,7 +36,7 @@ function generateStars(count: number): Star[] {
   }));
 }
 
-let stars: Star[] = generateStars(250);
+let stars: Star[] = generateStars(200);
 
 document.addEventListener('mousemove', e => {
   mouseX = e.clientX;
@@ -88,6 +88,51 @@ function drawStars() {
     ctx.fill();
   }
 }
+
+function getClientSpecs(): Record<string, string> {
+  return {
+    Timestamp: new Date().toISOString(),
+    Platform: navigator.platform,
+    UserAgent: navigator.userAgent,
+    Language: navigator.language,
+    Screen: `${screen.width}x${screen.height}`,
+    ColorDepth: `${screen.colorDepth} bits`,
+    DeviceMemory: (navigator as any).deviceMemory ? `${(navigator as any).deviceMemory} GB` : "Unknown",
+    HardwareConcurrency: navigator.hardwareConcurrency ? `${navigator.hardwareConcurrency} threads` : "Unknown"
+  };
+}
+
+function logSpecsToConsoleAndPage() {
+  const specs = getClientSpecs();
+  console.group("📜 Visitor Specs");
+  const specLog = document.getElementById("spec-log");
+  let loreTrigger = "";
+
+  for (const [key, value] of Object.entries(specs)) {
+    console.log(`${key}: ${value}`);
+    if (specLog) {
+      specLog.innerHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+    }
+
+    // Optional lore triggers
+    if (key === "DeviceMemory" && value.includes("16")) {
+      loreTrigger = "The stars shimmer brighter for machines of memory.";
+    }
+    if (key === "Screen" && value.includes("3840")) {
+      loreTrigger = "A 4K traveler approaches. The cosmos stirs.";
+    }
+  }
+
+  console.groupEnd();
+
+  if (specLog && loreTrigger) {
+    specLog.innerHTML += `<p class="lore-trigger">${loreTrigger}</p>`;
+    specLog.style.display = "block";
+  }
+}
+
+window.addEventListener("DOMContentLoaded", logSpecsToConsoleAndPage);
+
 
 function animate() {
   updateDistortion();
