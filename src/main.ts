@@ -99,7 +99,7 @@ function animate() {
 animate();
 
 const bgMusic = new Audio();
-bgMusic.src = 'sounds/HOME-Resonance.mp3?v=1';
+bgMusic.src = 'sounds/HOME-Resonance.mp3';
 bgMusic.loop = true;
 bgMusic.volume = 0.03;
 const audioContext = new (window.AudioContext || window.AudioContext)();
