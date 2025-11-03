@@ -23,11 +23,11 @@ function generateStars(count) {
         drift: Math.random() * 0.2 + 0.05,
     }));
 }
-let stars = generateStars(250);
-document.addEventListener('mousemove', e => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
+let stars = generateStars(200);
+// document.addEventListener('mousemove', e => {
+//   mouseX = e.clientX;
+//   mouseY = e.clientY;
+;
 function updateDistortion() {
     const rect = card.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;

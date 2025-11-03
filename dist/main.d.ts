@@ -13,7 +13,12 @@ interface Star {
     size: number;
     drift: number;
 }
+declare function generateStars(count: number): Star[];
 declare let stars: Star[];
+declare function updateDistortion(): void;
+declare function updateStars(): void;
+declare function drawStars(): void;
+declare function animate(): void;
 declare const bgMusic: HTMLAudioElement;
 declare const audioContext: AudioContext;
 declare const source: MediaElementAudioSourceNode;

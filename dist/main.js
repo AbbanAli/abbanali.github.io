@@ -121,4 +121,3 @@ muteBtn.addEventListener('click', () => {
         muteBtn.style.transform = '';
     }, 200);
 });
-//# sourceMappingURL=main.js.map
