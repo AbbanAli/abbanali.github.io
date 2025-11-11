@@ -55,8 +55,7 @@ body {
     0 16px 60px rgba(0, 0, 0, 0.7);
 }
 
-/* ✨ Floating Animation
-@keyframes floatCard {
+/* @keyframes floatCard {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 } */
@@ -112,6 +111,10 @@ background: linear-gradient(to right, #616eff, #3B45C5);
 background: linear-gradient(to right, #ff7b00, #cc3000);
 
 }
+.contact-btn.steam {
+background: linear-gradient(to right, #171D25, #0b1a5c);
+
+}
 
 
 /* 💫 Hover Shimmer */
@@ -156,6 +159,9 @@ background: linear-gradient(to right, #ff7b00, #cc3000);
 .icon.reddit {
   filter: drop-shadow(0 0 2px rgba(0,0,0,0.4));
 }
+.icon.steam {
+  filter: drop-shadow(0 0 2px rgba(0,0,0,0.4));
+}
 .mute-btn {
   position: fixed;
   bottom: 24px;
@@ -177,15 +183,25 @@ background: linear-gradient(to right, #ff7b00, #cc3000);
   background: rgba(255, 255, 255, 0.2);
 }
 #welcome-message {
+
   transition: opacity 1s ease;
 }
+ 
 
-/* 
-.float {
+/* .float {
   animation: floatIcon 3s ease-in-out infinite;
+  h1:hover { animation: color-change 3s infinite; }
 }
 
 @keyframes floatIcon {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-4px); }
-} */
+}  */
+.template {
+  display: none !important;
+}
+#welcome-message {
+  h1:hover { animation: color-change 3s infinite; }
+  
+
+}

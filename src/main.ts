@@ -50,7 +50,7 @@ function updateDistortion() {
   const dx = mouseX - cx;
   const dy = mouseY - cy;
   const dist = Math.sqrt(dx * dx + dy * dy);
-  const intensity = Math.max(0, 1 - dist / 400);
+  const intensity = Math.max(0, 1 - dist / 500);
   card.style.setProperty('--distort', intensity.toFixed(3));
 }
 
